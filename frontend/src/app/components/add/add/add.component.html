@@ -1,0 +1,88 @@
+<div>
+    <!-- <form (submit)="submitForm()" ngNativeValidate> -->
+    <form (submit)="submitForm()" #addAccountForm="ngForm">
+    <br />
+    <label>Account Number:</label>
+    <input
+      type="number"
+      [(ngModel)]="account.accountNumber"
+      name="accountNumber"
+      #accountNumberInput="ngModel"
+      required
+    />
+    <br>
+    <span class="err" *ngIf="accountNumberInput.errors?.['required'] && accountNumberInput.touched">Account Number is a required field</span>
+    <br />
+    <label>please select action</label>
+    <select [(ngModel)]="account.types" name="types" required #typesInput="ngModel">
+      <option>Deposit</option>
+      <option>Withdrawl</option>
+      <option>Loan</option>
+    </select>
+    <br>
+    <span class="err" *ngIf="typesInput.errors?.['required'] && typesInput.touched">Types is a required field</span>
+
+    <br />
+    <br />
+    <label>price</label>
+    <input
+      type="number"
+      step="0.01"
+      [(ngModel)]="account.price"
+      name="price"
+      required
+      max="100000"
+      #priceInput="ngModel"
+    />
+    <br>
+    <span class="err" *ngIf="priceInput.errors?.['required'] && priceInput.touched">Name is a required field</span>
+        <span class="err" *ngIf="priceInput.errors?.['max'] && priceInput.touched">price mast be ander a 100000$</span>
+       
+
+    <br />
+    <br />
+    <label>date:</label>
+    <input type="date" [(ngModel)]="account.date" name="date" required />
+    <br />
+    <br />
+    <ng-container *ngIf="account.types === 'Loan'">
+      <label>interest</label>
+      <input
+        type="number"
+        step="0.01"
+        [(ngModel)]="account.interest"
+        name="interest"
+        required
+        max="10000"
+      />
+      <br />
+      <br />
+
+      <label>Amount Of Payments</label>
+      <input
+        type="number"
+        step="0.01"
+        [(ngModel)]="account.amountOfPayments"
+        name="amountOfPayments"
+        required
+        max="10000"
+      />
+      <br />
+      <br />
+
+      <br />
+      <br />
+      <label>Date Of Loan:</label>
+      <input
+        type="date"
+        [(ngModel)]="account.dateOfLoan"
+        name="dateOfLoan"
+        required
+      />
+      <br />
+      <br />
+    </ng-container>
+
+    <button [disabled]="addAccountForm.invalid">add</button>
+  </form>
+</div>

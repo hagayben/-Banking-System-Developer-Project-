@@ -1,0 +1,32 @@
+<br />
+<label>Select an account number:</label>
+<br />
+<input type="text" [(ngModel)]="accountNumber" (change)="changeAccount()" />
+<button>submit</button>
+<br /><br />
+
+<table>
+  <thead>
+    <tr>
+      <th>Account Number</th>
+      <th>Types</th>
+      <th>Price</th>
+      <th>Date</th>
+      <th>Interest</th>
+      <th>Amount Of Payments</th>
+      <th>Date Of Loan</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let a of account">
+      <th>{{ a.accountNumber }}</th>
+      <th>{{ a.types }}</th>
+      <th>{{ a.price }}</th>
+      <th>{{ a.date }}</th>
+      <th>{{ a.interest }}</th>
+      <th>{{ a.amountOfPayments }}</th>
+      <th>{{ a.dateOfLoan }}</th>
+    </tr>
+  </tbody>
+</table>
